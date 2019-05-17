@@ -1,12 +1,13 @@
 package org.utopia.internationale.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -14,6 +15,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Auteur implements Serializable{
 	private static final long serialVersionUID = -5697924946670767636L;
+	
 	@Id @GeneratedValue
 	private Long idAuteur;
 	@NotEmpty
@@ -26,10 +28,9 @@ public class Auteur implements Serializable{
 	@Size(min=3, max=30)
 	@Email
 	private String email;
-	@ManyToOne
-	@JoinColumn(name="idArtcle")
-	private Article article;
-	
+	@OneToMany(mappedBy="auteur",fetch=FetchType.LAZY)
+	private Collection<Article> articles;
+
 	public Auteur() {
 		super();
 	}
@@ -73,9 +74,18 @@ public class Auteur implements Serializable{
 		this.email = email;
 	}
 
+	public Collection<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(Collection<Article> articles) {
+		this.articles = articles;
+	}
+
 	@Override
 	public String toString() {
 		return "Auteur [idAuteur=" + idAuteur + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + "]";
 	}
+	
 	
 }

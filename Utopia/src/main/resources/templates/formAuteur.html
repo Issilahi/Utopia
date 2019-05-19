@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Formulaire Auteur</title>
+<link rel="stylesheet" type="text/css" href="../static/css/myStyle.css" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/myStyle.css}" />	
+<meta name="viewport" content="width=device-width, initial-scale=1"/>	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container col-md-6">
+		<div class="panel panel-primary spacer">
+			<div class="panel-heading">Saisie un auteur</div>
+			<div class="panel-body">
+				<form th:action="@{/SaveAuteur}" method="post"
+					th:object="${auteur}">
+					<div class="form-group">
+						<label class="control-label">NOM:<span
+							class="couleur">*</span></label> <input class="form-control"
+							maxlength="15" type="text" th:field="*{nom}" /> <span
+							class="text-danger" th:errors="*{nom}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">PRENOM:<span class="couleur">*</span></label>
+						<input class="form-control" maxlength="15" type="text" th:field="*{prenom}"/>
+						<span class="text-danger" th:errors="*{prenom}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">EMAIL:<span class="couleur">*</span></label>
+						<input class="form-control" type="text" th:field="*{email}" />
+						<span class="text-danger" th:errors="*{email}"></span>
+					</div>
+					<div class="panel-footer modal-pieds">
+						<button type="submit" class="btn btn-primary largbouton2">
+							<i class="fa fa-save">&nbsp;Sauver</i>
+						</button>
+						<a th:href="@{/auteurs}" class="btn btn-danger largbouton2">
+							<i class="fa fa-arrow-left">&nbsp;Annuler</i>
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

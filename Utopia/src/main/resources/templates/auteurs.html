@@ -2,9 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-<link rel="stylesheet" type="text/css" 
+<!--<link rel="stylesheet" type="text/css" 
 	href="../static/css/myStyle.css" />
 <link rel="stylesheet" type="text/css" 
 	th:href="@{/css/myStyle.css}" />
@@ -12,11 +10,15 @@
 <link rel="stylesheet" type="text/css" 
 	href="../static/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css"
-	th:href="@{/css/bootstrap.min.css}"/>	
-<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+	th:href="@{/css/bootstrap.min.css}"/>-->
+
+<link rel="stylesheet" type="text/css" href="../static/css/myStyle.css" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/myStyle.css}" />	
+<meta name="viewport" content="width=device-width, initial-scale=1"/>	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container spacer">
@@ -32,7 +34,8 @@
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<td>ID</td><td>NOM</td><td>PRENOM</td><td>EMAIL</td>
+			<th>ID</th><th>NOM</th><th>PRENOM</th><th>EMAIL</th>
+			<th>DELETE</th><th>EDITER</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -41,6 +44,18 @@
 			<td th:text="${au.nom}"></td>
 			<td th:text="${au.prenom}"></td>
 			<td th:text="${au.email}"></td>
+			
+			<td>
+				<a onclick="return confirm('Etes vous sûr de supprimer?')"
+					th:href="@{/supprimerAuteur(id=${au.idAuteur},page=${pageCourante},size=${size},motCle=${motCle})}">
+					<button class="btn btn-danger">Delete</button>
+				</a>
+			</td>
+			<td>
+				<a th:href="@{/editAuteur(id=${au.idAuteur})}">
+					<button class="btn btn-primary">Editer</button>
+				</a>
+			</td>
 		</tr>
 	</tbody>
 </table>
@@ -51,6 +66,11 @@
 			<a th:text="${p}" th:href="@{auteurs(page=${p},motCle=${motCle})}"></a>
 		</li>
 	</ul>
+</div>
+<div class="container">
+	<a th:href="@{formAuteur}">
+		<button class="btn btn-primary" type="submit">Ajouter</button>
+	</a>
 </div>
 </body>
 </html>

@@ -87,16 +87,32 @@ public class ArticleController {
 		Article article = articleRepository.findOne(id);
 		model.addAttribute("article", article);
 		model.addAttribute("listAuteurs",auteurRepository.findAll());
+		
+		
+		
 		return "article/EditArticle";
 	}
 	
 	@RequestMapping(value="/UpdateArticle",method=RequestMethod.POST)
 	public String update(@Valid Article article, 
-			BindingResult bindingResult){
+			BindingResult bindingResult,
+			@RequestParam(name="picture")MultipartFile file) throws Exception{
 		if(bindingResult.hasErrors()) {
 			return "EditArticle";
 		}
+		if(!(file.isEmpty())){
+			article.setImage(file.getOriginalFilename());
+		}
 		articleRepository.save(article);
+		
+		if(!(file.isEmpty())){
+			article.setImage(file.getOriginalFilename());
+			//file.transferTo(new File(System.getProperty("user.home")+"/sco/"+file.getOriginalFilename()));
+			//file.transferTo(new File(scolariteDir+file.getOriginalFilename()));
+			//Correcte
+			file.transferTo(new File(imagesDir+article.getIdArticle()));
+		}
+		
 		return "redirect:/articles";
 	}
 	
@@ -113,7 +129,5 @@ public class ArticleController {
 		File f = new File(imagesDir+id);
 		return IOUtils.toByteArray(new FileInputStream(f));
 	}
-	
-	
 	
 }

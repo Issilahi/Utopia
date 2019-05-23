@@ -151,7 +151,7 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Données Pertinantes:</h6>
-						<a class="collapse-item" href="tables.html">Listes auteurs</a> <a
+						<a class="collapse-item" href="articles.html">Listes articles</a> <a
 							class="collapse-item" href="register.html">Enregistrer</a> <a
 							class="collapse-item" href="forgot-password.html">Mot de passe Oublié
 						</a>
@@ -423,8 +423,8 @@
 											<th>Date</th>
 											<th>Auteur</th>
 											<th>Photo</th>
-											<th>Delete</th>
-											<th>Editer</th>
+											<th>Actions</th>
+											<!--<th>Editer</th>-->
 										</tr>
 									</thead>
 									<tbody>
@@ -435,6 +435,11 @@
 											<td th:text="${ar.date}"></td>
 											<td th:text="${ar.auteur.nom}"></td>
 											<!--<td th:text="${ar.image}"></td>-->
+											<!--<td>
+												<img class="img-circle "
+												 th:src="@{getPhoto(id=${ar.idArticle})}"
+												 width="50" height="50"/>
+											</td>-->
 											<td>
 												<img class="img-circle"
 												 th:src="@{getPhoto(id=${ar.idArticle})}"
@@ -446,15 +451,28 @@
 													<button class="btn btn-danger">Delete</button>
 											</a></td>-->
 											
-											<td><a
+											<!--<td><a
 												onclick="return confirm('Etes vous sûr de supprimer?')"
 												th:href="@{/supprimerArticle(id=${ar.idArticle})}">
 													<button class="btn btn-danger">Delete</button>
-											</a></td>
+											</a></td>-->
 											
-											<td><a th:href="@{/editArticle(id=${ar.idArticle})}">
+											<!--<td><a th:href="@{/editArticle(id=${ar.idArticle})}">
 													<button class="btn btn-primary">Editer</button>
-											</a></td>
+											</a></td>-->
+											<td>
+												<a
+													onclick="return confirm('Etes vous sûr de supprimer?')"
+													th:href="@{/supprimerArticle(id=${ar.idArticle})}">
+														<button class="btn btn-danger">Delete</button>
+												</a>
+												<a th:href="@{/editArticle(id=${ar.idArticle})}">
+													<button class="btn btn-primary">Editer</button>
+												</a>
+											</td>
+											<!--<td><a th:href="@{/editArticle(id=${ar.idArticle})}">
+													<button class="btn btn-primary">Editer</button>
+											</a></td>-->
 										</tr>
 									</tbody>
 								</table>

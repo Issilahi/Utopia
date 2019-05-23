@@ -48,16 +48,6 @@ public class AuteurController {
 	@RequestMapping(value="/auteurs")
 	public String consulter(Model model) {
 		List<Auteur> listAuteurs = auteurRepository.findAll();
-		//Page<Auteur> listAuteurs = auteurRepository.findAll(new PageRequest(p, size));
-		/*Page<Auteur> listAuteurs = auteurRepository.chercher("%"+mc+"%",new PageRequest(page, size));
-		int pagesCount = listAuteurs.getTotalPages();
-		int[] pages = new int[pagesCount];
-		for(int i=0;i<pagesCount;i++) pages[i]=i;
-		model.addAttribute("motCle", mc);
-		model.addAttribute("size", size);
-		model.addAttribute("pageCourante", page);
-		model.addAttribute("pages", pages);
-		model.addAttribute("listAuteurs", listAuteurs);*/
 		model.addAttribute("listAuteurs", listAuteurs);
 		return "auteur/auteurs";
 	}
@@ -69,15 +59,11 @@ public class AuteurController {
 	}
 	
 	@RequestMapping(value="/SaveAuteur",method=RequestMethod.POST)
-	public String save(Model model,@Valid Auteur auteur, BindingResult bindingResult,
-			@RequestParam(name="photo")MultipartFile file) {
+	public String save(Model model,@Valid Auteur auteur, BindingResult bindingResult){
 		
 		if(bindingResult.hasErrors()){
 			return "auteur/FormAuteur";
 		}
-		
-		
-		
 		auteurRepository.save(auteur);
 		model.addAttribute("auteur",auteur);
 		return "redirect:/auteurs";

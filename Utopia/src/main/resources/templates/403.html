@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>403</title>
+<script type="text/javascript">
+	function noBack() {
+		window.history.forward()
+	}
+	noBack();
+	window.onload = noBack;
+	window.onpageshow = function(evt) {
+		if (evt.persisted)
+			noBack()
+	}
+	window.onunload = function() {
+		void (0)
+	}
+</script>
+</head>
+<body>
+	<div class="container col-md-6">
+		<div class="panel panel-primary spacer">
+			<div class="panel-heading">Problème d'autorisation</div>
+			<div class="panel-body">
+				<div class="red">Vous n'avez pas le droit d'accéder à cette
+					ressource</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -49,7 +49,8 @@
 
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item active"><a class="nav-link"
-				href="index.html"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Administration</span></a>
+				href="index.html"> <i class="fas fa-fw fa-tachometer-alt"></i> 
+				<span>Administration</span></a>
 			</li>
 
 			<!-- Divider -->
@@ -107,7 +108,7 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Données:</h6>
-						<a class="collapse-item" href="tables.html">Listes-articles</a> <a
+						<a class="collapse-item" th:href="@{articles}">Liste articles</a> <a
 							class="collapse-item" href="register.html">Register</a> <a
 							class="collapse-item" href="forgot-password.html">Forgot
 							Password
@@ -151,7 +152,7 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Données Pertinantes:</h6>
-						<a class="collapse-item" href="articles.html">Listes articles</a> <a
+						<a class="collapse-item" th:href="@{articles}">Liste articles</a> <a
 							class="collapse-item" href="register.html">Enregistrer</a> <a
 							class="collapse-item" href="forgot-password.html">Mot de passe Oublié
 						</a>
@@ -403,28 +404,18 @@
 						</div>
 						<div class="card-body">
 							<div class="text-right">
-								<a th:href="@{formArticle}"> 
-								<span
-									class="icon text-white-50"> 
-										<i class="fas fa-plus">
-											<button class="btn btn-primary" type="submit">Ajouter</button>
-										</i>
-								</span> 
-								</a>
-							</div>
+            	 				<a th:href="@{formArticle}" class="btn btn-primary btn-icon-split">
+                    			<span class="icon text-white-50">
+                      				<i class="fas fa-plus"></i>
+                    			</span>
+                    			<span class="text"> Ajouter</span>
+                  				</a>
+            				</div>
 							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
+								<table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th>ID</th>
-											<th>Titre</th>
-											<th>Contenu</th>
-											<th>Date</th>
-											<th>Auteur</th>
-											<th>Photo</th>
-											<th>Actions</th>
-											<!--<th>Editer</th>-->
+											<th>ID</th><th>Titre</th><th>Contenu</th><th>Date</th><th>Auteur</th><th>Photo</th><th class="text-center">Actions</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -434,45 +425,21 @@
 											<td th:text="${ar.contenu}"></td>
 											<td th:text="${ar.date}"></td>
 											<td th:text="${ar.auteur.nom}"></td>
-											<!--<td th:text="${ar.image}"></td>-->
-											<!--<td>
-												<img class="img-circle "
-												 th:src="@{getPhoto(id=${ar.idArticle})}"
-												 width="50" height="50"/>
-											</td>-->
 											<td>
-												<img class="img-circle"
-												 th:src="@{getPhoto(id=${ar.idArticle})}"
-												 width="50" height="50"/>
+												<img class="rounded-circle" th:src="@{getPhoto(id=${ar.idArticle})}" width="50" height="50"/>
 											</td>
-											<!--<td><a
-												onclick="return confirm('Etes vous sûr de supprimer?')"
-												th:href="@{/supprimerArticle(id=${ar.idArticle},page=${pageCourante},size=${size},motCle=${motCle})}">
-													<button class="btn btn-danger">Delete</button>
-											</a></td>-->
-											
-											<!--<td><a
-												onclick="return confirm('Etes vous sûr de supprimer?')"
-												th:href="@{/supprimerArticle(id=${ar.idArticle})}">
-													<button class="btn btn-danger">Delete</button>
-											</a></td>-->
-											
-											<!--<td><a th:href="@{/editArticle(id=${ar.idArticle})}">
-													<button class="btn btn-primary">Editer</button>
-											</a></td>-->
-											<td>
-												<a
-													onclick="return confirm('Etes vous sûr de supprimer?')"
-													th:href="@{/supprimerArticle(id=${ar.idArticle})}">
-														<button class="btn btn-danger">Delete</button>
+											<td class="text-center p-auto">
+												<a	onclick="return confirm('Etes vous sûr de supprimer?')"
+													th:href="@{supprimerArticle(id=${ar.idArticle})}">
+														<button class="btn btn-danger text-center">
+														<span class="fa fa-trash"></span>Delete</button>
 												</a>
-												<a th:href="@{/editArticle(id=${ar.idArticle})}">
-													<button class="btn btn-primary">Editer</button>
+												<a th:href="@{editArticle(id=${ar.idArticle})}">
+													<button class="btn btn-success text-center">
+													<span class="fa fa-eye"></span>Editer</button>
 												</a>
 											</td>
-											<!--<td><a th:href="@{/editArticle(id=${ar.idArticle})}">
-													<button class="btn btn-primary">Editer</button>
-											</a></td>-->
+											
 										</tr>
 									</tbody>
 								</table>

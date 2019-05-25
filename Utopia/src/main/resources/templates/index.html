@@ -103,7 +103,7 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Données:</h6>
-            <a class="collapse-item" href="tables.html">Listes-articles</a>
+            <a class="collapse-item" th:href="@{articles}">Liste articles</a>
             <a class="collapse-item" href="register.html">Register</a>
             <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
             <div class="collapse-divider"></div>
@@ -135,15 +135,15 @@
       
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages-utilisateurs" aria-expanded="true"
           aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Pages</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages-utilisateurs" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Données:</h6>
-            <a class="collapse-item" href="tables.html">Listes-articles</a>
+            <a class="collapse-item" th:href="@{articles}">Listes articles</a>
             <a class="collapse-item" href="register.html">Register</a>
             <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
             <div class="collapse-divider"></div>

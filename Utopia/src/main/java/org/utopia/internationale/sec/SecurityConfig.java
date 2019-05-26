@@ -35,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests()
 		.antMatchers("/formArticle","/editArticle","/supprimerArticle")
 		.hasRole("ADMIN");
+		//http.exceptionHandling().accessDeniedPage("/403");
 		http.exceptionHandling().accessDeniedPage("/403");
 	}
 }

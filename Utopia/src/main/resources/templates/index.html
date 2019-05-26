@@ -2,14 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
 
-  <title>Admistration-utopia</title>
+  <title>Home</title>
 
   Custom fonts for this template
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"/>
@@ -17,19 +16,17 @@
 
   Custom styles for this template
   <link href="css/sb-admin-2.min.css" rel="stylesheet"/>
- 
 </head>
 
 <body id="page-top">
 
-  <!-- Page Wrapper -->
   <div id="wrapper">
-
+	
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{index}">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -143,7 +140,7 @@
         <div id="collapsePages-utilisateurs" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Données:</h6>
-            <a class="collapse-item" th:href="@{articles}">Listes articles</a>
+            <a class="collapse-item" th:href="@{articles}">Liste articles</a>
             <a class="collapse-item" href="register.html">Register</a>
             <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
             <div class="collapse-divider"></div>
@@ -336,8 +333,10 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+              <a class="nav-link dropdown-toggle" th:href="@{/login?logout}" th:inline="text" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                	[[${#httpServletRequest.remoteUser}]]
+                </span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->

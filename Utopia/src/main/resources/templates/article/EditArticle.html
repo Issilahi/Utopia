@@ -366,11 +366,12 @@
 
 						<!-- Nav Item - User Information -->
 						<li class="nav-item dropdown no-arrow">
-							<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
+							<a class="nav-link dropdown-toggle" th:href="@{/login?logout}" th:inline="text" id="userDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 
-								<span
-									class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna
+								
+								<span class="mr-2 d-none d-lg-inline text-gray-600 small">
+									[[${#httpServletRequest.remoteUser}]]
 								</span> 
 								<img class="img-profile rounded-circle"
 									src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
@@ -415,7 +416,7 @@
 					<div class="col-md-8 offset-md-2">
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Ajouter un auteur</h6>
+							<h6 class="m-0 font-weight-bold text-primary">Modifier un article</h6>
 						</div>
 						<div class="card-body">
 							<form th:action="@{/UpdateArticle}" method="post" th:object="${article}"

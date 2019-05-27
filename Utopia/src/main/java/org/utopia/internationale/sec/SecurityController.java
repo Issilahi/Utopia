@@ -4,17 +4,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping(value="/admin")
 public class SecurityController {
+	
+	/*@RequestMapping("/loginAdmin")
+	public String Admin() {
+		return "login";
+	}*/
 	
 	@RequestMapping("/login")
 	public String login() {
 		return "login";
 	}
 	
-	@RequestMapping(value="/")
+	@RequestMapping(value="/index")
 	public String home() {
-		//return "index";
-		return "redirect:/index";
+		//return "redirect:/index";
+		return "index";
 	}
 	
 	@RequestMapping(value="/403")

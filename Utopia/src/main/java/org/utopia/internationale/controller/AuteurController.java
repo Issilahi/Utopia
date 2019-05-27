@@ -18,13 +18,14 @@ import org.utopia.internationale.dao.AuteurRepository;
 import org.utopia.internationale.entities.Auteur;
 
 @Controller
+@RequestMapping(value="/admin")
 public class AuteurController {
 	@Autowired
 	private AuteurRepository auteurRepository;
 	
-	@RequestMapping(value="/index")
+	@RequestMapping(value="/indexAuteur")
 	public String pageIndex() {
-		return "index";
+		return "indexAuteur";
 	}
 	
 	/*@RequestMapping(value="/auteurs")

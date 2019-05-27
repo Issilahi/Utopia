@@ -24,6 +24,7 @@ import org.utopia.internationale.entities.Article;
 import org.utopia.internationale.entities.Auteur;
 
 @Controller
+@RequestMapping(value="/admin")
 public class ArticleController {
 
 	@Autowired

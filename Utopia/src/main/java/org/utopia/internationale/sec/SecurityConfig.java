@@ -28,14 +28,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.formLogin().loginPage("/login");
-		http.authorizeRequests()
+		//http.formLogin().loginPage("/login");
+		http.formLogin().loginPage("/admin/login");
+		/*http.authorizeRequests()
 			.antMatchers("/index","/auteurs",
-					"/articles").hasRole("USER");
+					"/articles").hasRole("USER");*/
 		http.authorizeRequests()
-		.antMatchers("/formArticle","/editArticle","/supprimerArticle")
+		.antMatchers("/index","/auteurs",
+				"/articles").hasRole("USER");
+		
+		http.authorizeRequests()
+		.antMatchers("/admin/formArticle","/admin/editArticle","/admin/supprimerArticle")
 		.hasRole("ADMIN");
 		//http.exceptionHandling().accessDeniedPage("/403");
-		http.exceptionHandling().accessDeniedPage("/403");
+		http.exceptionHandling().accessDeniedPage("/admin/403");
 	}
 }
